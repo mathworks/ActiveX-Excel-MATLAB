@@ -1,4 +1,5 @@
 # Excel ファイルのセル幅自動調整
+[![View Examples to play around with Excel through ActiveX on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://jp.mathworks.com/matlabcentral/fileexchange/78218-examples-to-play-around-with-excel-through-activex)
 Copyright (c) 2020, The MathWorks, Inc.
 
 # やったこと
