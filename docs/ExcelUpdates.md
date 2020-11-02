@@ -7,12 +7,30 @@ Copyright (c) 2020, The MathWorks, Inc.
 # はじめに
 
 
-Excel シートに MATLAB から何らかの値を出力して、その値に対して Excel 内で何らかの計算結果を返す処理を考えます。
+Excel シートに MATLAB から何らかの値を出力して、Excel を開くことなくその値に対して Excel 内で何らかの計算処理を同時にさせたい。そんな時には `'UseExcel'` オプションを使うといいよというお話。
 
 
+  
+
+
+Twitter で豆腐さんど ([@tohu_sand](https://twitter.com/tohu_sand)) との[やり取り](https://twitter.com/tohu_sand/status/1322513635051151362)をしたので備忘録としてまとめておきます。
+
+
+
+
+`'UseExcel'` オプションは R2019b からはデフォルトで `'false'` ですが、それまでは Excel が使える環境であれば `'true'` であったという点には要注意。なので R2019a 以前を使っている場合は、特に意識する必要はないと思います。リリースノートへのは[こちら: UseExcel](https://jp.mathworks.com/help/matlab/release-notes.html?rntext=UseExcel&startrelease=R2017b&endrelease=R2020b&groupby=release&sortby=descending&searchHighlight=UseExcel)。
+
+
+  
 ## 使用環境 
 
    -  MATLAB R2020b 
+
+# やりたいこと
+
+
+例えばこんな感じ。
+
 
 
 ```matlab:Code
@@ -27,12 +45,12 @@ writematrix(data,'example.xlsx','Range','A2:E6');
 
 
 
-例えばこんな感じ。
+MATLAB から入力値を出力し、総和は Excel で計算する。（これくらいの計算であれば MATLAB でやってしまえ・・という話もありますがあくまで例です。）
 
 
 
 
-MATLAB から入力値を出力し、総和は Excel で計算する。これくらいの計算であれば MATLAB でやってしまえ・・という話もありますがあくまで例です。
+Excel への出力の仕方によっては、改めて Excel ファイルを開かないと A9 の総和が更新されない。
 
 
   
@@ -115,7 +133,7 @@ ans = 11.9684
 
 
 
-これは [xlswrite 関数](https://jp.mathworks.com/help/matlab/ref/xlswrite.html)は（Excel がインストールされている環境であれば）実行時に Excel を起動するから。Excel が起動すると Excel 内の計算を実行することになります。xlswrite 関数が非推奨な大きな理由はこの Excel を起動する処理に時間がかかるためです。[writematrix 関数](https://jp.mathworks.com/help/matlab/ref/writematrix.html)などの比較的新しい関数は（デフォルトの設定では） Excel アプリを介することなくデータを出力します。
+これは [xlswrite 関数](https://jp.mathworks.com/help/matlab/ref/xlswrite.html)は（Excel がインストールされている環境であれば）実行時に Excel を起動するから。Excel が起動すると Excel 内の計算を実行することになります。xlswrite 関数が非推奨な大きな理由はこの Excel を起動する処理に時間がかかるためです。[writematrix 関数](https://jp.mathworks.com/help/matlab/ref/writematrix.html)などの比較的新しい関数は（R2019b 以降のデフォルトの設定では）Excel アプリを介することなくデータを出力します。
 
 
 
